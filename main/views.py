@@ -126,5 +126,5 @@ def add_product_ajax(request):
         return HttpResponse(b"CREATED", status=201)
     return HttpResponseNotFound()
 def get_product_json(request):
-    product_item = Product.objects.all()
+    product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
